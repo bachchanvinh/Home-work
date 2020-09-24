@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+/* all ----------------------------------------------------------------*/
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+html body{
+    font-family: 'Lato';
+}
+/* Header --------------------------------------------------------*/
+.header{
+    display:flex;
+    height:70px;
+    justify-content: space-between; 
+    padding-left: 80px;
+    padding-right:80px;
+    align-items: center;
+}
+.header button{
+    color: #35ce97
+}
+.nav-menu li{
+    display:inline;
+    margin-left:18px;
+    margin-right:18px;
+}
+.nav-menu li a{
+    text-decoration: none;
+    color:#333333
+}
+/*  Body  --------------------------------------------------------------*/
+.btn-sign_in{
+    padding: 8px 16px;
+    color: #3355cc;
+    background-color: #ffffff;
+    border: 1px solid #35c973;
+    border-radius: 88px;
+}
+.signup-top{
+    text-align: center;
+    margin-top:73px;
+    margin-bottom: 40px;
+}
+.signup-top h1{
+    margin-bottom:8px;
+}
+.signup-form{
+    width: 442px;
+    height: 460px;
+    margin: 0px auto;
+    box-shadow: 0px 2px 16px rgba(39, 9, 9, 0.16);
+    border-radius: 16px;
+}
+.signup-form .form-controls{
+    padding: 40px;
+}
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0px
+}
+.form-control label{
+margin-bottom: 11px;
+}
+.container{
+    margin-bottom: 142px;
+}
+.form-control input{
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.btn-sigup{
+    width: 100%;
+    background-color:#35cE97;
+    border-radius: 88px;
+    border: 1px solid #35cE97;
+    padding:16px 0;
+    color: #ffffff;
+}
+/* Footer------------------- */
+.footer{
+    background-color: #4f4f4f;
+    padding: 24px 89.33px 16px 80px;
+}
+.footer .p1{
+    display:flex;
+    justify-content: space-between;
+}
+
+.footer .AI h5{
+    font-size: 14px;
+    line-height: 16.8px;
+    color: #f2f2f2;
+    padding-bottom: 4px;
+}
+.footer .AI ul li{
+    font-size: 14px;
+    line-height: 16.8px;
+    list-style: none;
+    padding: 4px 0px;   
+}
+.footer .AI ul li a{
+text-decoration: none;
+color: #bdbdbd
+}
+.footer .logofooter{
+display: flex;
+flex-direction: column ;
+align-items: center;
+color: #828282
+}
+
+.footer .p1 .logofooter{
+    margin-left: 178px;
+    margin-right:0px
+}
+.footer .p1 .logofooter{
+    margin-right:150px;
+}
+.footer .p1 .social li{
+    display:inline;
+    padding:20px;
+}
+.footer .p2{
+    color:#bdbdbd;
+    margin-top:103px
+}
