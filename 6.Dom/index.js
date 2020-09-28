@@ -169,7 +169,7 @@ console.log(list)
 
 //12.4 Show ALL of the data in items, each item is a <li> tag
 for(let i=0;i<items.length;i++){
-list.insertAdjacentHTML(`beforeend`,`<li>${items[i]}</li>`)
+list.insertAdjacentHTML(`beforeend`,`<li>${items[i]}<button class="rebtn">Remove</button></li>`)
 }
 list.getElementsByTagName("li")[0].remove()
 list.getElementsByTagName("li")[0].remove()
@@ -180,9 +180,27 @@ let input=document.getElementById("item_input")
 let add=document.getElementById("add_btn")
 console.log(input)
 console.log(add)
-// 12.7. 12.8 Register ‘Add‘ button click event and When ‘Add’ button is clicked, the value of ‘New item’ input
-add.addEventListener('click',()=>{
-    input=input.value
-    list.insertAdjacentHTML(`beforeend`,`<li>${input}</li>`)
-})
-//chua xong
+// 12.7. 12.8 12.9  12.10 12.11Register ‘Add‘ button click event and When ‘Add’ button is clicked, the value of ‘New item’ input
+function add_btn(){
+    add.addEventListener('click', () => {
+        let inputvalue = input.value
+        items.push(inputvalue)
+        console.log(items)
+        list.insertAdjacentHTML(`beforeend`, `<li>${inputvalue}<button class="rebtn">Remove</button></li>`)
+        input.value = ""
+        remove_btn()
+    })
+}
+add_btn()
+
+// 12.14 12.15 Each time a ‘remove’ button clicked, identify the index of the clicked item
+let removebutton
+function remove_btn(){
+   removebutton=document.getElementsByClassName("rebtn")
+    for (let i=0; i < removebutton.length; i++) {
+        removebutton[i].addEventListener(`click`, () => {
+            console.log(i)
+        })
+    }
+}
+//chua lam duoc phan remove
