@@ -181,26 +181,27 @@ let add=document.getElementById("add_btn")
 console.log(input)
 console.log(add)
 // 12.7. 12.8 12.9  12.10 12.11Register ‘Add‘ button click event and When ‘Add’ button is clicked, the value of ‘New item’ input
-function add_btn(){
+function add_btn(callback){
     add.addEventListener('click', () => {
         let inputvalue = input.value
         items.push(inputvalue)
         console.log(items)
         list.insertAdjacentHTML(`beforeend`, `<li>${inputvalue}<button class="rebtn">Remove</button></li>`)
         input.value = ""
-        remove_btn()
+        callback()
     })
 }
-add_btn()
+add_btn(remove_btn)
 
 // 12.14 12.15 Each time a ‘remove’ button clicked, identify the index of the clicked item
-let removebutton
+window.removebutton
 function remove_btn(){
    removebutton=document.getElementsByClassName("rebtn")
     for (let i=0; i < removebutton.length; i++) {
-        removebutton[i].addEventListener(`click`, () => {
-            console.log(i)
+        removebutton[i].addEventListener(`click`, (e) => {
+            console.log(e.target.parentElement)
+            e.target.parentElement.remove()
         })
     }
 }
-//chua lam duoc phan remove
+remove_btn()
