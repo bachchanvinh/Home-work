@@ -42,7 +42,7 @@ for (let i = 0; i < timeSheetData.length; i++) {
     <td>${timeSheetData[i].project}</td>
     <td>${timeSheetData[i].task}</td>
     <td>${timeSheetData[i].Timespent}</td>
-    <td><button class="btn_remove">X</button></td>
+    <td><button class="btn_remove">X</button><button class="btn_update">U</button></td>
     </tr>`)
 }
 document.getElementById("remove1").remove()
@@ -65,42 +65,92 @@ function add() {
     <td>${inputpro.value}</td>
     <td>${inputtas.value}</td>
     <td>${inputtim.value}</td>
-    <td><button class="btn_remove">X</button></td>
+    <td><button class="btn_remove">X</button><button class="btn_update">U</button></td>
     </tr>`)
     inputpro.value = ""
     inputtas.value = ""
     inputtim.value = ""
     inputpro.focus()
+    addevent(btnrem, x)
+    addevent(btnupd, place)
 }
-inputtim.addEventListener('keyup' || 'click', (a) => {
-    if (a.key == `Enter`) {
+inputtim.addEventListener('keyup', (a) => {
+    if (a.key == `Enter` && btnadd.textContent == "Add") {
         add()
     }
+    else if (a.key == `Enter` && btnadd.textContent == "Update") {
+        upd()
+    }
+
 })
 btnadd.addEventListener('click', () => {
-    add()
+    if (btnadd.textContent == "Add") {
+        add()
+    }
+    else if (btnadd.textContent == "Update") {
+        upd()
+    }
 })
 //---------------------------------REMOVE------------------------
 let btnrem = document.getElementsByClassName("btn_remove")
 console.log(btnrem)
 function x(e) {
-    console.log(e.target.parentElement)
-    e.target.parentElement.parentElement.remove()
     timeSheetData.splice(e.target.id, 1)
+    e.target.parentElement.parentElement.remove()
     console.log(timeSheetData)
-    removecallback()
-    removeadd()
+    removeevent(btnrem, x)
+    addevent(btnrem, x)
+    removeevent(btnupd, place)
+    addevent(btnupd, place)
 }
-function removeadd() {
-    for (let i = 0; i < btnrem.length; i++) {
-        btnrem[i].id=i
-        btnrem[i].addEventListener('click', x)    
+function addevent(btn, func) {
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].id = i
+        btn[i].addEventListener('click', func)
     }
 }
-removeadd()
+function removeevent(btn, func) {
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].removeEventListener(`click`, func)
+    }
+}
+addevent(btnrem, x)
+//----------------------Update--------------------------------
+let btnclr = document.getElementById('btn_clr')
+btnclr.addEventListener('click', () => {
+    inputpro.value = ""
+    inputtas.value = ""
+    inputtim.value = ""
+})
 
-function removecallback() {
-    for (let i = 0; i < btnrem.length; i++) {
-        btnrem[i].removeEventListener(`click`,x)
+
+let btnupd = document.getElementsByClassName("btn_update")
+console.log(btnadd)
+let index = 0
+function place(e) {
+    btnadd.textContent = "Update"
+    inputpro.value = timeSheetData[e.target.id].project
+    inputtas.value = timeSheetData[e.target.id].task
+    inputtim.value = timeSheetData[e.target.id].Timespent
+    index = e.target.id
+}
+addevent(btnupd, place)
+function upd() {
+    timeSheetData[index] = {
+        project: inputpro.value,
+        task: inputtas.value,
+        Timespent: inputtim.value
     }
+    btnupd[index].parentElement.parentElement.innerHTML = `<tr>
+    <td>${inputpro.value}</td>
+    <td>${inputtas.value}</td>
+    <td>${inputtim.value}</td>
+    <td><button class="btn_remove">X</button><button class="btn_update">U</button></td>
+    </tr>`
+    removeevent(btnupd, place)
+    addevent(btnupd, place)
+    inputpro.value = ""
+    inputtas.value = ""
+    inputtim.value = ""
+    btnadd.textContent = "Add"
 }
